@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smartwatch Landing Page</title>
+</head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            background: #f5f5f5;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        header {
+            background: #222;
+            color: white;
+            padding: 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease-in-out;
+        }
+
+        nav ul li a:hover {
+            color: #ff5a5f;
+        }
+
+        /* Mobile Navigation Fix */
+@media (max-width: 768px) {
+    nav {
+        position: relative;
+    }
+
+    nav ul {
+        display: none;
+        flex-direction: column;
+        background: #111;
+        position: absolute;
+        top: 60px;   /* Just below navbar */
+        right: 10px;
+        width: 180px;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: all 0.3s ease-in-out;
+    }
+
+    nav ul.show {
+        display: flex;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Hamburger button */
+    .menu-toggle {
+        display: block;
+        cursor: pointer;
+        font-size: 24px;
+        background: #e63946;
+        border: none;
+        color: white;
+        padding: 6px 12px;
+        border-radius: 6px;
+        margin-left: auto;
+    }
+
+    /* Adjust nav links inside dropdown */
+    nav ul li {
+        margin: 10px 0;
+    }
+
+    nav ul li a {
+        color: white;
+        text-decoration: none;
+        font-size: 16px;
+    }
+
+    nav ul li a:hover {
+        color: #e63946;
+    }
+}
+
+
+        section {
+            padding: 120px 20px;
+            scroll-margin-top: 100px;
+        }
+
+        #hero {
+            text-align: center;
+            padding: 160px 20px 60px;
+            background: linear-gradient(to bottom, #f8f9fa, #e3e6e8);
+        }
+
+        #hero img {
+            width: 42%;
+            max-width: 380px;
+            display: block;
+            margin: auto;
+            border-radius: 20px;
+        }
+
+        button {
+            background: #ff5a5f;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 25px;
+            transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background: #ff2a2f;
+            transform: scale(1.05);
+        }
+
+        #features {
+            text-align: center;
+            padding: 100px 20px 100px;
+            background: linear-gradient(to bottom, #f8f9fa, #e3e6e8);
+        }
+
+        .feature-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 80px;
+        }
+
+        .feature {
+            width: 180px;
+            text-align: center;
+        }
+
+        .feature img {
+            width: 90px;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        #pricing {
+            background: linear-gradient(to bottom, #f8f9fa, #e3e6e8);
+            padding: 100px 20px 100px;
+            text-align: center;
+        }
+
+        #features h2 {
+            font-size: 34px; /* Increase heading size */
+            font-weight: bold;
+        }
+
+        #features p {
+           font-size: 20px; /* Increase description size */
+        }
+
+       .pricing-container {
+           display: flex;
+           justify-content: center;
+           gap: 30px;
+           flex-wrap: wrap;
+        }  
+
+/* Pricing Cards */
+.pricing-card {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 280px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.pricing-card:hover {
+    transform: scale(1.05);
+}
+
+/* Plan Titles */
+.pricing-card h3 {
+    font-size: 22px;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+/* Price Styling */
+.price {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* Feature List */
+.pricing-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.pricing-card li {
+    font-size: 16px;
+    padding: 8px 0;
+    color: #666;
+}
+
+/* Buy Now Button - Red */
+.buy-btn {
+    background: #ff5a5f;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: background 0.3s;
+    font-weight: bold;
+}
+
+.buy-btn:hover {
+    background: #ff2a2f;
+}
+
+
+#contact {
+            background: linear-gradient(to bottom, #f8f9fa, #e3e6e8);
+            color: black;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.1);
+            max-width: 480px;
+            margin: auto;
+        }
+
+        .contact-table {
+            width: 100%;
+        }
+
+        .contact-table td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        .contact-table input, .contact-table textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .contact-table textarea {
+            resize: vertical;
+            height: 100px;
+        }
+
+        .contact-btn {
+            background: #ff5a5f;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 15px;
+            transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        .contact-btn:hover {
+            background: #ff2a2f;
+            transform: scale(1.05);
+        }
+
+        .support-text {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+
+.feature {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    position: relative; 
+}
+
+.feature img {
+    width: 115px;
+    height: auto;
+    transition: transform 0.4s ease-in-out, margin-bottom 0.4s ease-in-out;
+}
+
+/* Hover Effect - Enlarge Image & Push Text Down */
+.feature:hover img {
+    transform: scale(2.2); /* Adjust enlargement */
+    margin-bottom: 80px;  /* Push text down further */
+}
+
+/* Default Text Spacing */
+.feature p {
+    margin-top: 10px;
+    transition: margin-top 0.4s ease-in-out;
+}
+
+/* Move Text Down More When Hovering */
+.feature:hover p {
+    margin-top: 35px; /* Increase space based on new image size */
+}
+
+
+#testimonials {
+            background: linear-gradient(to bottom, #f8f9fa, #e3e6e8);
+            padding: 80px 20px 5px; /* Reduced bottom padding */
+            text-align: center;
+            margin-bottom: 0;
+        }
+
+        .testimonial {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px; /* Reduced margin */
+        }
+
+        .ratings {
+            padding: 30px 20px; /* Reduced top padding */
+            margin-top: -10px; /* Pulls ratings closer */
+            background: linear-gradient(to bottom, #e3e6e8, #d1d8e0);
+        }
+
+        .stars {
+            font-size: 24px;
+            color: gold;
+        }
+
+/* 🔹 Order Form Base */
+#orderForm {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 600px;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+/* 🔹 Header Bar */
+.form-header {
+    background: #f44336;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 12px 20px;
+    position: relative;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+/* 🔹 Close Button */
+#closeForm {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 22px;
+    font-weight: bold;
+    color: white;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+#closeForm:hover {
+    color: black;
+}
+
+/* 🔹 Input Fields */
+#orderForm input,
+#orderForm select,
+#orderForm textarea {
+    width: 90%;
+    max-width: 450px;
+    margin: 10px auto;
+    display: block;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+/* 🔹 Labels */
+#orderForm label {
+    font-weight: bold;
+    display: block;
+    margin: 10px auto 5px;
+    width: 90%;
+    max-width: 450px;
+}
+
+/* 🔹 Submit Button */
+#orderForm button {
+    display: block;
+    margin: 15px auto;
+    width: 90%;
+    max-width: 450px;
+    padding: 12px;
+    background: #f44336;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+#orderForm button:hover {
+    background: #d32f2f;
+}
+
+/* 🔹 Messages */
+.success-message {
+    display: none;
+    color: green;
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: center;
+}
+.error-message {
+    color: red;
+    font-size: 14px;
+    display: none;
+    text-align: center;
+}
+
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .order-form {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 50%;
+            max-width: 700px;
+        }
+        .order-form h2 {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .order-form input, .order-form select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .pricing-options {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        .pricing-options label {
+            background: #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            flex: 1;
+            text-align: center;
+            margin: 0 5px;
+        }
+        .pricing-options input {
+            display: none;
+        }
+        .pricing-options input:checked + label {
+            background: #ff4d4d;
+            color: white;
+        }
+
+        .pricing-card:nth-child(1) {
+            background-color: #d0e4ff; 
+        }
+
+        .pricing-card:nth-child(2) {
+            background-color: #dab6ff; 
+        }
+
+        .pricing-card:nth-child(3) {
+            background-color: #ffeb99; 
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: #ff4d4d;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .close-btn {
+            text-align: right;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+ footer {
+    background: #222;
+    color: white;
+    text-align: center;
+    padding: 30px 20px;
+    font-size: 0.9rem;
+    position: relative;
+}
+
+#backToHome {
+    background: #ff5a5f;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 15px;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+    display: inline-block;
+}
+
+#backToHome:hover {
+    background: #ff2a2f;
+    transform: scale(1.1);
+}
+
+</style>
+<body>
+    <header>
+        <h1>SmartWatch X</h1>
+        <nav>
+            <ul>
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="hero">
+    <img src="Images/SmartWatch X.png" alt="Smartwatch">
+    <h2>Revolutionize Your Wrist with Smart Technology</h2>
+    <p>Stay connected, track health, and navigate with ease.</p>
+    <button class="cta-btn order-btn">Order Now</button>
+</section>
+
+
+    <section id="features">
+        <h2>Smartwatch X Features</h2>
+        <p>Discover the incredible features of SmartWatch X.</p>
+        <div class="feature-container">
+            <div class="feature">
+                <img src="Images/Display.png" alt="High-Resolution Display">
+                <p>Vivid & Clear High-Resolution Display</p>
+            </div>
+            <div class="feature">
+                <img src="Images/bluetooth-calling.png" alt="Bluetooth Calling">
+                <p>Make Calls Directly from Your Watch</p>
+            </div>
+            <div class="feature">
+                <img src="Images/smart-health.png" alt="Smart Health Assistant">
+                <p>Track Heart Rate, Steps & More</p>
+            </div>
+            <div class="feature">
+                <img src="Images/smart-features.png" alt="Smart Features">
+                <p>Voice Assistant, Notifications & More</p>
+            </div>
+            <div class="feature">
+                <img src="Images/navigation.png" alt="Turn-by-Turn Navigation">
+                <p>Real-Time Turn-by-Turn GPS Navigation</p>
+            </div>
+            <div class="feature">
+                <img src="Images/AI-assistant & Calculator.png" alt="Smart Calculator & AI Voice Assistant">
+                <p>Smart Calculator & AI Voice Assistant for Hands-Free Assistance</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing">
+    <h2>Choose Your Plan</h2>
+    <div class="pricing-container">
+
+        <!-- Basic Plan -->
+        <div class="pricing-card">
+            <h3>Basic</h3>
+            <p class="price">₹2,199</p>
+            <ul>
+                <li>Essential Smartwatch Features</li>
+                <li>Heart Rate Monitor</li>
+                <li>Call & App Alerts</li>
+                <li>Perfect for first-time smartwatch users!</li>
+            </ul>
+            <button class="cta-btn order-btn">Buy Now</button>
+        </div>
+
+        <!-- Pro Plan -->
+        <div class="pricing-card">
+            <h3>Pro</h3>
+            <p class="price">₹4,499</p>
+            <ul>
+                <li>AI Voice Assistant</li>
+                <li>Advanced Health Monitoring</li>
+                <li>Bluetooth Calling</li>
+                <li>Designed for those who want more from their watch!</li>
+            </ul>
+            <button class="cta-btn order-btn">Buy Now</button>
+        </div>
+
+        <!-- Premium Plan -->
+        <div class="pricing-card">
+            <h3>Premium</h3>
+            <p class="price">₹8,999</p>
+            <ul>
+                <li>All Pro Features</li>
+                <li>Luxury Design & Build</li>
+                <li>7-Day Battery Life</li>
+                <li>The ultimate smartwatch experience awaits you!</li>
+            </ul>
+            <button class="cta-btn order-btn">Buy Now</button>
+        </div>
+    </div>
+</section>
+
+<div class="overlay" id="overlay"></div>
+<div id="orderForm" class="order-form">
+    <!-- header with close button -->
+    <div class="form-header">
+        Place Your Order
+        <span id="closeForm">&times;</span>
+    </div>
+
+    <form id="orderFormContent">
+        <input type="text" id="customerName" name="customerName" placeholder="Enter your name" required>
+        <input type="email" id="customerEmail" name="customerEmail" placeholder="Enter your email" required>
+        <input type="tel" id="customerPhone" name="customerPhone" placeholder="Enter your phone number" required>
+        <input type="text" id="shippingAddress" name="shippingAddress" placeholder="Enter your shipping address" required>
+
+        <label for="pricingPlan">Select Plan:</label>
+        <select id="pricingPlan" name="pricingPlan" required>
+            <option value="basic">Basic - ₹2,199</option>
+            <option value="pro">Pro - ₹4,499</option>
+            <option value="premium">Premium - ₹8,999</option>
+        </select>
+
+        <label for="paymentMethod">Select Payment Method:</label>
+        <select id="paymentMethod" name="paymentMethod" required>
+            <option value="">Choose Payment Method</option>
+            <option value="credit">Credit Card</option>
+            <option value="debit">Debit Card</option>
+            <option value="Gpay">Gpay</option>
+            <option value="Paytm">Paytm</option>
+            <option value="cod">Cash on Delivery</option>
+        </select>
+
+        <button id="submitOrder" type="submit">Submit Order</button>
+    </form>
+
+    <p id="orderSuccess" class="success-message">Order placed successfully!</p>
+</div>
+
+
+    <section id="testimonials">
+        <h2>What Our Customers Say</h2>
+        <div class="testimonial">
+            <p>"This smartwatch is amazing! Sleek design, great battery life, and seamless Bluetooth calling. Perfect for daily use!"</p>
+            <strong>- John Doe</strong>
+        </div>
+        <div class="testimonial">
+            <p>"I love the design and the features. The AI assistant is incredibly helpful!"</p>
+            <strong>- Jane Smith</strong>
+        </div>
+    </section>
+    
+    <section class="ratings">
+        <h2>Customer Ratings</h2>
+        <div class="stars">★★★★★</div>
+        <p>4.9/5 Based on 1200+ Reviews</p>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <div class="contact-form">
+            <table class="contact-table">
+                <tr>
+                    <td><label for="name">Your Name:</label></td>
+                    <td><input type="text" id="name" placeholder="Enter your name"></td>
+                </tr>
+                <tr>
+                    <td><label for="email">Your Email:</label></td>
+                    <td><input type="email" id="email" placeholder="Enter your email"></td>
+                </tr>
+                <tr>
+                    <td><label for="message">Your Message:</label></td>
+                    <td><textarea id="message" placeholder="Type your message here"></textarea></td>
+                </tr>
+            </table>
+            <button class="contact-btn">Send Message</button>
+            <p class="support-text">For further support, email us at <strong>support@smartwatchx.com</strong></p>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 SmartWatch X | All Rights Reserved.</p>
+        <button id="backToHome"> <strong>Back to Home</strong></button>
+    </footer>
+    
+    <script>
+
+// Smooth scroll to top
+        document.getElementById("backToHome").addEventListener("click", function(event) {
+            event.preventDefault();
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+        
+
+
+// ===== Order Form Handling =====
+
+// Elements
+const orderForm = document.getElementById("orderForm");
+const overlay = document.getElementById("overlay");
+const openButtons = document.querySelectorAll(".order-btn"); 
+const closeButton = document.getElementById("closeForm");
+const orderFormContent = document.getElementById("orderFormContent");
+const orderSuccess = document.getElementById("orderSuccess");
+
+// Function to open the form
+function openOrderForm() {
+    orderForm.style.display = "block";
+    overlay.style.display = "block";
+}
+
+// Function to close the form
+function closeOrderForm() {
+    orderForm.style.display = "none";
+    overlay.style.display = "none";
+    orderSuccess.style.display = "none"; 
+    orderFormContent.reset(); 
+    clearErrors(); // remove error messages when closing
+}
+
+// Clear error messages
+function clearErrors() {
+    const errors = orderFormContent.querySelectorAll(".error-message");
+    errors.forEach(err => err.remove());
+}
+
+// Show error message below input
+function showError(input, message) {
+    clearError(input); // prevent duplicate errors
+    const error = document.createElement("div");
+    error.className = "error-message";
+    error.style.color = "red";
+    error.style.fontSize = "14px";
+    error.style.marginTop = "4px";
+    error.textContent = message;
+    input.insertAdjacentElement("afterend", error);
+}
+
+// Clear single input error
+function clearError(input) {
+    const nextElement = input.nextElementSibling;
+    if (nextElement && nextElement.classList.contains("error-message")) {
+        nextElement.remove();
+    }
+}
+
+// Event: Open form
+openButtons.forEach(btn => {
+    btn.addEventListener("click", openOrderForm);
+});
+
+// Event: Close form
+closeButton.addEventListener("click", closeOrderForm);
+overlay.addEventListener("click", closeOrderForm);
+
+// Event: Submit form with validation
+orderFormContent.addEventListener("submit", function (e) {
+    e.preventDefault();
+    clearErrors(); // reset old errors
+
+    let valid = true;
+
+    // Validate fields
+    const name = orderFormContent.querySelector('input[name="customerName"]');
+    const email = orderFormContent.querySelector('input[name="customerEmail"]');
+    const phone = orderFormContent.querySelector('input[name="customerPhone"]');
+    const address = orderFormContent.querySelector('input[name="shippingAddress"]');
+    const plan = orderFormContent.querySelector('select[name="pricingPlan"]');
+    const payment = orderFormContent.querySelector('select[name="paymentMethod"]');
+
+    if (!name.value.trim()) {
+        showError(name, "Name is required");
+        valid = false;
+    }
+    if (!email.value.trim()) {
+        showError(email, "Email is required");
+        valid = false;
+    }
+    if (!phone.value.trim()) {
+        showError(phone, "Phone number is required");
+        valid = false;
+    }
+    if (!address.value.trim()) {
+        showError(address, "Shipping address is required");
+        valid = false;
+    }
+    if (!plan.value) {
+        showError(plan, "Please select a plan");
+        valid = false;
+    }
+    if (!payment.value) {
+        showError(payment, "Please select a payment method");
+        valid = false;
+    }
+
+    // If invalid → stop
+    if (!valid) return;
+
+    // If all valid → success
+    orderSuccess.style.display = "block";
+
+    setTimeout(() => {
+        closeOrderForm();
+    }, 2000);
+});
+
+
+</script> 
+</body>
+</html>
